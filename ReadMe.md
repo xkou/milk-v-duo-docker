@@ -1,6 +1,8 @@
 
 # Milk-V Duo build env 
 
+doc: `https://github.com/milk-v/duo-manifest`
+
 ## Build docker
 
 `sh build.sh prepare`
