@@ -10,5 +10,5 @@ apt install -y python-is-python3 python3-pip
 
 apt install -y cmake
 
-curl https://storage.googleapis.com/git-repo-downloads/repo > /usr/local/bin/repo
+wget https://storage.googleapis.com/git-repo-downloads/repo -O /usr/local/bin/repo
 chmod +x /usr/local/bin/repo
