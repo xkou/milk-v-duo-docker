@@ -1,0 +1,7 @@
+services:
+  compile:
+    build: ./ubuntu
+    image: milkv-build-env
+    volumes:
+      - '.:/code'
+      
