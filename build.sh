@@ -1,6 +1,6 @@
 
 run(){
-    docker run --device=/dev/loop-control:/dev/loop-control --device=/dev/loop0:/dev/loop0 --cap-add SYS_ADMIN --device-cgroup-rule="b 7:* rmw" -i -v $PWD/duo:/duo -w /duo --rm milkv-build-env bash
+    docker run -v /dev:/dev --cap-add SYS_ADMIN --privileged=true --device-cgroup-rule="b 7:* rmw" -i -v $PWD/duo:/duo -w /duo --rm milkv-build-env bash
 }
 
 get(){
@@ -14,7 +14,6 @@ EOF
 
 image(){
     cat <<EOF | run
-    mknod /dev/loop0 b 7 0
     source build/cvisetup.sh
     defconfig cv1800b_sophpi_duo_sd
     clean_all
@@ -27,7 +26,6 @@ EOF
 
 pack(){
     cat <<EOF | run
-    mknod /dev/loop0 b 7 0
     source build/cvisetup.sh
     defconfig cv1800b_sophpi_duo_sd
     pack_sd_image

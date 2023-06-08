@@ -1,7 +1,7 @@
 
 # Milk-V Duo build env 
 
-doc: `https://github.com/milk-v/duo-manifest`
+doc: [https://github.com/milk-v/duo-manifest](https://github.com/milk-v/duo-manifest)
 
 ## Build docker
 
@@ -11,7 +11,7 @@ doc: `https://github.com/milk-v/duo-manifest`
 
 `sh build.sh get`
 
-## Build
+## Build image
 
-`sh build.sh build`
+`sh build.sh image`
 
