@@ -21,7 +21,7 @@ image(){
     pack_sd_image
 EOF
 
-    ls -l duo/install/soc_cv1800b_sophpi_duo_sd/
+    ls -ld duo/install/soc_cv1800b_sophpi_duo_sd/*
 }
 
 pack(){
@@ -30,6 +30,7 @@ pack(){
     defconfig cv1800b_sophpi_duo_sd
     pack_sd_image
 EOF
+    ls -ld duo/install/soc_cv1800b_sophpi_duo_sd/*
 }
 
 build(){
