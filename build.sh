@@ -3,6 +3,10 @@ run(){
     docker run -v /dev:/dev --cap-add SYS_ADMIN --privileged=true --device-cgroup-rule="b 7:* rmw" -i -v $PWD/duo:/duo -w /duo --rm milkv-build-env bash
 }
 
+runbuild(){
+    docker run -i -v $PWD/duo:/duo -v $PWD/$PROJ:/proj -w /proj --rm milkv-build-env bash
+}
+
 get(){
     cat <<EOF | run
     export REPO_URL='https://mirrors.tuna.tsinghua.edu.cn/git/git-repo'
@@ -35,6 +39,25 @@ EOF
 
 build(){
     true
+}
+
+make(){
+    echo $1
+    cat <<EOF | PROJ=$1 runbuild
+ #   source /duo/build/cvisetup.sh
+    cd /duo/host-tools/gcc/riscv64-linux-musl-x86_64/bin/
+    ln -sf riscv64-unknown-linux-musl-gcc gcc
+    ln -sf riscv64-unknown-linux-musl-g++ g++
+    ln -sf riscv64-unknown-linux-musl-ld ld
+    cd -
+    export CC=gcc
+    export CXX=g++
+    export LD=ld
+    export PATH=/duo/host-tools/gcc/riscv64-linux-musl-x86_64/bin/:$PATH
+    make clean
+    make
+EOF
+    
 }
 
 prepare(){
